@@ -12,8 +12,8 @@ if ($user) {
     $id = $user['id'];
 }
 
-$stmt = $pdo->prepare("SELECT name,price,description FROM products inner join cart_items on products.prod_id = cart_items.prod_id
-inner join carts on cart_items.cart_id = carts.cart_id  WHERE carts.user_id = ?");
+$stmt = $pdo->prepare("SELECT name,price,description FROM products INNER JOIN cart_items ON products.prod_id = cart_items.prod_id
+INNER JOIN carts on cart_items.cart_id = carts.cart_id  WHERE carts.user_id = ?");
 $stmt->execute([$id]);
 
 $cart = $stmt->fetchAll(PDO::FETCH_ASSOC);

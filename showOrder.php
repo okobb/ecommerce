@@ -3,6 +3,7 @@
 include("./connection.php");
 
 $email = $_POST["email"];
+$orderId = $_POST["orderid"];
 
 $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
 $stmt->execute([$email]);
@@ -13,7 +14,7 @@ if ($user) {
 }
 
 $stmt = $pdo->prepare("SELECT name,price,description FROM products INNER JOIN order_items on order_items.prod_id = products.prod_id
-INNER JOIN orders on order_items.order_id = orders.order_id  WHERE orders.user_id = ? ORDER BY order.order_id");
+INNER JOIN orders on order_items.order_id = orders.order_id  WHERE orders.user_id = ?");
 $stmt->execute([$id]);
 
 $order = $stmt->fetchAll(PDO::FETCH_ASSOC);

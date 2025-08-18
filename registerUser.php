@@ -11,4 +11,8 @@ $stmt = $pdo->prepare("INSERT INTO users(username,email,password) VALUES(?,?,?) 
 $stmt->execute([$username,$email,$password]);
 $id = $pdo->lastInsertId();
 
+$stmt = $pdo->prepare("INSERT INTO carts(user_id) VALUES(?) ");
+$stmt->execute([$id]);
+
+
 echo "you are user " . $id;

@@ -3,7 +3,7 @@
 include("./connection.php");
 
 
-$stmt = $pdo->prepare("SELECT * FROM products inner join categories on products.cat_id = categories.cat_id ORDER by category  ");
+$stmt = $pdo->prepare("SELECT category FROM products");
 $stmt->execute();
 
 $prod = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -20,7 +20,7 @@ $cart_id = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($cart_id) {
     $cartId = $cart_id['cart_id'];
 }
-$stmt = $pdo->prepare("DELETE FROM cart_items where cart_id = ? and prod_id = ?");
+$stmt = $pdo->prepare("DELETE FROM cart_items WHERE cart_id = ? AND prod_id = ?");
 $stmt->execute([$cartId,$prodId]);
 
 if($stmt)

@@ -3,7 +3,7 @@
 include("./connection.php");
 
 
-$stmt = $pdo->prepare("SELECT * FROM products");
+$stmt = $pdo->prepare("SELECT * FROM products ORDER by category");
 $stmt->execute();
 
 $prod = $stmt->fetchAll(PDO::FETCH_ASSOC);
