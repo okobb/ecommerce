@@ -4,7 +4,6 @@ include("./connection.php");
 
 $email = $_POST["email"];
 $prodId = $_POST["prodid"];
-$quantity = $_POST["quantity"];
 
 $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
 $stmt->execute([$email]);
@@ -21,13 +20,14 @@ $cart_id = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($cart_id) {
     $cartId = $cart_id['cart_id'];
 }
-$stmt = $pdo->prepare("Insert INTO cart_items(cart_id,prod_id,quantity) values(?,?,?)");
-$stmt->execute([$cartId,$prodId,$quantity]);
+$stmt = $pdo->prepare("DELETE FROM cart_items where cart_id = ? and prod_id = ?");
+$stmt->execute([$cartId,$prodId]);
 
 if($stmt)
 {
-    echo "Item added to cart.";
+    echo "Item removed from cart.";
 }
 else{
-    echo "failed to add item to cart.";
+    echo "failed to remove item from cart.";
 }
+
