@@ -10,7 +10,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user) {
     $id = $user['id'];
-}
+
 
 $stmt = $pdo->prepare("SELECT cart_id FROM carts WHERE user_id = ?");
 $stmt->execute([$id]);
@@ -42,4 +42,7 @@ if($stmt)
 }
 else{
     echo "failed to create order.";
+}
+} else {
+    echo json_encode("Wrong email or password");
 }

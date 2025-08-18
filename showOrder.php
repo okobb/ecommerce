@@ -11,7 +11,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user) {
     $id = $user['id'];
-}
+
 
 $stmt = $pdo->prepare("SELECT name,price,description FROM products INNER JOIN order_items on order_items.prod_id = products.prod_id
 INNER JOIN orders on order_items.order_id = orders.order_id  WHERE orders.user_id = ?");
@@ -25,4 +25,8 @@ if (!$order) {
   ]);
 } else {
   echo json_encode($order);
+}
+}
+else {
+  echo json_encode("Wrong email or password.");
 }
