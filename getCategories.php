@@ -3,15 +3,15 @@
 include("./connection.php");
 
 
-$stmt = $pdo->prepare("SELECT * FROM categories");
+$stmt = $pdo->prepare("SELECT * FROM products inner join categories on products.cat_id = categories.cat_id ORDER by category  ");
 $stmt->execute();
 
-$cat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$prod = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if (!$cat) {
+if (!$prod) {
   echo json_encode([
-    "message" => "no categories found"
+    "message" => "no products found"
   ]);
 } else {
-  echo json_encode($cat);
+  echo json_encode($prod);
 }
