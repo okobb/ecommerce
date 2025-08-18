@@ -13,7 +13,7 @@ if ($user) {
 }
 
 $stmt = $pdo->prepare("SELECT name,price,description FROM products inner join order_items on order_items.prod_id = products.prod_id
-inner join orders on order_items.order_id = orders.order_id  WHERE orders.user_id = ?");
+inner join orders on order_items.order_id = orders.order_id  WHERE orders.user_id = ? ORDER BY orders.order_id");
 $stmt->execute([$id]);
 
 $order = $stmt->fetchAll(PDO::FETCH_ASSOC);
